@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+:root {
+    --font-montserrat: 'Montserrat', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: black;
+}
+
+body {
+    color: white;
+}
+
+.hr-body {
+    color: rgb(211, 211, 211, 0.5);
+    margin: 60px auto;
+    max-width: 60%;
+}
+
+.main-background {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url('../public/images/JPG/main-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 60% center;
+}
+
+.secondary-background {
+    background-image: url('../public/images/JPG/secondary-bg.jpg');
+    background-size: cover;
+}
+
+
+.text-green {
+    color: #39ff14;
+}
+
+.btn-learn:hover {
+    border: none;
+    text-shadow: 2px 2px 10px rgb(26, 129, 26, 1), -2px -2px 10px rgb(26, 129, 26, 1);
+    transition: text-shadow 0.3s ease;
+}
+
+/******************** NAVIGATION ********************/
+
+.dropdown-menu {
+    z-index: 50;
+    position: absolute;
+}
+
+nav ul li a,
+nav ul li button {
+    transition: color 0.2s ease-in-out;
+}
+
+nav ul li a:hover,
+nav ul li button:hover {
+    color: #22c55e !important;
+    /* Tailwind's green-500 */
+}
+
+.mobile-nav li a {
+    transition: color 0.2s ease-in-out;
+}
+
+.mobile-nav li a:active {
+    color: #22c55e !important;
+}
+
+/******************** CAROUSEL DOTS ********************/
+
+.custom-dot-class li.slick-active div {
+    border-color: #22c55e !important;
+    /* green border */
+}
+
+.custom-dot-class li.slick-active div div {
+    background-color: #22c55e !important;
+    /* green inner circle */
+}
+
+.custom-dot-class li div {
+    background-color: #6b7280;
+}
+
+.slick-dots {
+    padding-top: 2rem;
+}
+
+.slick-dots .custom-dot-class {
+    position: absolute !important;
+    bottom: 0;
+    /* sits inside the pb-12 space */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex !important;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/******************** FONTS ********************/
+.montserrat {
+    font-family: var(--font-montserrat);
+}
+
+.montserrat-regular {
+    font-weight: 400;
+    font-style: normal;
+}
+
+.montserrat-italic {
+    font-weight: 400;
+    font-style: italic;
+}
+
+.montserrat-light {
+    font-weight: 300;
+    font-style: normal;
+}
+
+.montserrat-light-italic {
+    font-weight: 300;
+    font-style: italic;
+}
+
+.montserrat-bold {
+    font-weight: 700;
+    font-style: normal;
+}
+
+.montserrat-bold-italic {
+    font-weight: 700;
+    font-style: italic;
+}
+
+.montserrat-hairline {
+    font-weight: 100;
+    font-style: normal;
+}
