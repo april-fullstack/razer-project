@@ -5,13 +5,25 @@ import dynamic from "next/dynamic";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { montserrat } from './components/font';
-import { Logo, Thx, Chroma, Headset, Mouse, Keyboard, Nari, Cooling, Adjusting, Swiveling, Balance, Wireless, Twitter, Facebook, Google, Wired, Five, Six, Seven, Eight } from "../public/assets/images"
-import { useRouter } from "next/navigation";
+import { Thx, Chroma, Headset, Mouse, Keyboard, Nari, Cooling, Adjusting, Swiveling, Balance, Wireless, Wired, Five, Six, Seven, Eight, FullFive, FullSix, FullSeven, FullEight } from "../public/assets/images"
 import Footer from "./components/footer";
 import { useState } from "react";
 import { StaticImageData } from "next/image";
+import { Button } from "./components/button"
+import ProductsSection from "./section/product";
 
-const images = [Five, Six, Seven, Eight, Five, Six, Seven, Eight];
+type ImagePair = {
+  thumb: StaticImageData;
+  full: StaticImageData;
+};
+
+const imagePairs: ImagePair[] = [
+  { thumb: Five, full: FullFive },
+  { thumb: Six, full: FullSix },
+  { thumb: Seven, full: FullSeven },
+  { thumb: Eight, full: FullEight },
+];
+const images: ImagePair[] = [...imagePairs, ...imagePairs];
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
 export default function Home() {
@@ -20,7 +32,7 @@ export default function Home() {
     arrows: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4, // default for desktop
+    slidesToShow: 4,
     slidesToScroll: 4,
     adaptiveHeight: true,
     customPaging: (i: number) => (
@@ -31,14 +43,14 @@ export default function Home() {
     dotsClass: "slick-dots custom-dot-class",
     responsive: [
       {
-        breakpoint: 1024, // tablets & small laptops
+        breakpoint: 1024,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
         },
       },
       {
-        breakpoint: 640, // mobile
+        breakpoint: 640,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -46,25 +58,19 @@ export default function Home() {
       },
     ],
   };
-
+  
   const [showMore, setShowMore] = useState(false);
 
-  // Fullscreen state (basic example)
   const [fullscreenImage, setFullscreenImage] = useState<StaticImageData | null>(null);
-
-  const router = useRouter();
-
-  const handleClick = () => {
-    router.push('#')
-  }
+  
 
   return (
     <main className={montserrat.className}>
       <div className="relative z-50 h-[80px]"> <Navbar /> </div>
 
-      {/* MAIN BODY */}
+
       <section className="main-background pt-5 md:pt-15 min-h-auto md:min-h-[50vh] mx-auto">
-        {/* Headings */}
+
         <div className="mt-0 max-w-[1200px] mx-auto">
           <p className="montserrat-bold mx-10 text-5xl lg:text-[65px] leading-snug md:leading-tight">
             SUPREME WIRELESS
@@ -118,9 +124,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col items-start sm:text-left px-6 md:px-0 tracking-widest md:tracking-wide">
-            <Image src={Cooling} alt="" width={40} height={40} />
-            <h5 className="mt-2 mb-1 montserrat-bold">
+          <div className="about-size sm:text-left px-6 md:px-0 tracking-widest md:tracking-wide">
+            <Image src={Cooling} alt="Cooling Gel-Infused Cushions" width={40} height={40} />
+            <h5 className="ft montserrat-bold">
               COOLING GEL-INFUSED CUSHIONS
             </h5>
             <p className="montserrat-hairline text-sm">
@@ -128,9 +134,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col items-start sm:text-left px-6 md:px-0 tracking-widest md:tracking-wide">
-            <Image src={Adjusting} alt="" width={40} height={40} />
-            <h5 className="mt-2 mb-1 montserrat-bold">
+          <div className="about-size sm:text-left px-6 md:px-0 tracking-widest md:tracking-wide">
+            <Image src={Adjusting} alt="Auto-Adjusting Headband" width={40} height={40} />
+            <h5 className="ft montserrat-bold">
               AUTO-ADJUSTING HEADBAND
             </h5>
             <p className="montserrat-hairline text-sm">
@@ -138,17 +144,17 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col items-start sm:text-left px-6 md:px-0 tracking-widest md:tracking-wide">
-            <Image src={Swiveling} alt="" width={40} height={40} />
-            <h5 className="mt-2 mb-1 montserrat-bold">SWIVELING EARCUPS</h5>
+          <div className="about-size sm:text-left px-6 md:px-0 tracking-widest md:tracking-wide">
+            <Image src={Swiveling} alt="Swiveling Earcups" width={40} height={40} />
+            <h5 className="ft montserrat-bold">SWIVELING EARCUPS</h5>
             <p className="montserrat-hairline text-sm">
               Adapting to the shape and position of your ears
             </p>
           </div>
 
-          <div className="flex flex-col items-start sm:text-left px-6 md:px-0 tracking-widest md:tracking-wide">
-            <Image src={Balance} alt="" width={40} height={40} />
-            <h5 className="mt-2 mb-1 montserrat-bold">GAME/CHAT BALANCE</h5>
+          <div className="about-size sm:text-left px-6 md:px-0 tracking-widest md:tracking-wide">
+            <Image src={Balance} alt="Game or Chat Balance" width={40} height={40} />
+            <h5 className="ft montserrat-bold">GAME/CHAT BALANCE</h5>
             <p className="montserrat-hairline text-sm">
               Fine-tune between game and chat volume for the perfect mix that
               lets you enjoy immersive sound without interrupting team
@@ -156,18 +162,18 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col items-start sm:text-left px-6 md:px-0 tracking-widest md:tracking-wide">
-            <Image src={Wireless} alt="" width={40} height={40} />
-            <h5 className="mt-2 mb-1 montserrat-bold">2.4GHZ WIRELESS AUDIO</h5>
+          <div className="about-size sm:text-left px-6 md:px-0 tracking-widest md:tracking-wide">
+            <Image src={Wireless} alt="2.4GHz Wireless Audio" width={40} height={40} />
+            <h5 className="ft montserrat-bold">2.4GHZ WIRELESS AUDIO</h5>
             <p className="montserrat-hairline text-sm">
               Get lag-free, high-fidelity gaming audio with a wireless range of
               up to 12 meters smoothly without disconnection.
             </p>
           </div>
 
-          <div className="flex flex-col items-start sm:text-left px-6 md:px-0 tracking-widest md:tracking-wide">
-            <Image src={Wired} alt="" width={40} height={40} />
-            <h5 className="mt-2 mb-1 montserrat-bold">WIRED MODE</h5>
+          <div className="about-size sm:text-left px-6 md:px-0 tracking-widest md:tracking-wide">
+            <Image src={Wired} alt="Wired Mode" width={40} height={40} />
+            <h5 className="ft montserrat-bold">WIRED MODE</h5>
             <p className="montserrat-hairline text-sm">
               Get seamless cross-platform compatibility via a 2.5 mm audio jack
               in wired mode. Enjoy high quality stereo sound whether you're
@@ -185,25 +191,23 @@ export default function Home() {
 
           <div className="w-full max-w-5xl mx-auto px-6 relative pb-10 sm:overflow-x-visible overflow-x-hidden h-full">
             <Slider {...settings}>
-              {images.map((imgSrc, idx) => (
+              {images.map((img, idx) => (
                 <div key={idx} className="relative group w-full sm:px-2 md:px-2 lg:px-2">
-                  {/* Fullscreen button (appears on hover) */}
                   <div
                     className="absolute inset-0 flex items-center justify-center 
                      opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
                   >
-                    <button
-                      onClick={() => setFullscreenImage(imgSrc)}
-                      className="bg-[#39ff14] hover:bg-[#23da03] px-6 py-2 md:px-8 md:py-3 text-xs md:text-sm  rounded-full uppercase 
-                       tracking-wide transition-transform duration-200 transform hover:scale-105"
+                    <Button
+                      variant="action"
+                      onClick={() => setFullscreenImage(img.full)}
+                      className="text-xs md:text-sm tracking-wide transition-transform duration-200 transform hover:scale-105"
                     >
                       VIEW FULLSCREEN
-                    </button>
+                    </Button>
                   </div>
 
-                  {/* Image (darkens on hover) */}
                   <Image
-                    src={imgSrc}
+                    src={img.thumb}
                     alt={`Product image ${idx + 1}`}
                     width={300}
                     height={300}
@@ -218,14 +222,15 @@ export default function Home() {
             {fullscreenImage && (
               <div
                 onClick={() => setFullscreenImage(null)}
-                className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 cursor-pointer"
+                className="fs-wrapper"
               >
+
                 <Image
                   src={fullscreenImage}
                   alt="Fullscreen product"
-                  width={800}
-                  height={800}
-                  className="rounded max-w-[90%] max-h-[90%] object-contain"
+                  width={1600}
+                  height={1600}
+                  unoptimized
                 />
               </div>
             )}
@@ -237,7 +242,6 @@ export default function Home() {
       <section id="community-section" className="secondary-background py-15 lg:py-23 px-15 md:px-20">
         <div className="max-w-5xl mx-auto">
 
-          {/* Text Content */}
           <h2 className="text-green text-2xl font-bold mb-4">
             THX SPATIAL AUDIO
           </h2>
@@ -249,11 +253,10 @@ export default function Home() {
             instincts with sound as a weapon.
           </p>
 
-          {/* Responsive THX Logo */}
           <Image
-            src={Thx}   // ← your THX logo
+            src={Thx}
             alt="THX Logo"
-            width={150}   // desktop size
+            width={150}
             height={75}
             className="md:w-[150px] w-[80px] h-auto opacity-90 hidden sm:block"
           />
@@ -261,175 +264,60 @@ export default function Home() {
       </section>
 
       {/* FOURTH PART */}
-      <section className="bg-[#111] py-10 md:py-30">
-        <p className="text-green text-[25px] montserrat-bold text-center px-20 lg:px-0 tracking-widest">EXPLORE OTHER PRODUCTS</p>
-
-        <div className="mx-auto w-[90%] sm:w-[80%] lg:w-[65%] pt-7 md:pt-20 
-                  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-7 gap-y-6">
-
-          {/* Product 1 */}
-          <div className="shadow-2xl border-b-3 border-[#39ff14] mx-auto bg-[#222]">
-            <div className="relative inline-block bg-black">
-              <Image src={Headset} alt="" width={300} height={300} />
-              <Image src={Chroma} alt="Chroma logo" width={50} height={50} className="absolute bottom-2 right-2" />
-            </div>
-            <div className="ml-3 pb-2">
-              <p className="motserrat-bold my-1 tracking-wide">RAZER NARI ULTIMATE</p>
-              <p className="montserrat-hairline text-xs mb-3 w-[75%]">Wireless Gaming Headset with Razer HyperSense</p>
-              <button className="montserrat-regular btn-class text-green btn-learn text-xs mb-2">LEARN MORE</button>
-            </div>
-          </div>
-
-          {/* Product 2 */}
-          <div className="shadow-2xl border-b-3 border-[#39ff14] mx-auto bg-[#222]">
-            <div className="relative inline-block bg-black">
-              <Image src={Headset} alt="" width={300} height={300} />
-              <Image src={Chroma} alt="Chroma logo" width={50} height={50} className="absolute bottom-2 right-2" />
-            </div>
-            <div className="ml-3 pb-2">
-              <p className="motserrat-bold my-1 tracking-wide">RAZER NARI</p>
-              <p className="montserrat-hairline text-xs mb-3 w-[75%]">Wired Gaming Headset with Razer Hypersense</p>
-              <button className="montserrat-regular btn-class text-green btn-learn text-xs mb-2">LEARN MORE</button>
-            </div>
-          </div>
-
-          {/* Product 3 */}
-          <div className={`shadow-2xl border-b-3 border-[#39ff14] mx-auto bg-[#222] ${showMore ? '' : 'hidden md:block'}`}>
-            <div className="relative inline-block bg-black">
-              <Image src={Mouse} alt="" width={300} height={300} />
-              <Image src={Chroma} alt="Chroma logo" width={50} height={50} className="absolute bottom-2 right-2" />
-            </div>
-            <div className="ml-3 pb-2">
-              <p className="motserrat-bold my-1 tracking-wide">RAZER MAMBA WIRELESS</p>
-              <p className="montserrat-hairline text-xs mb-3 w-[75%]">Full Razer Chroma and Wireless Convenience</p>
-              <button className="montserrat-regular btn-class text-green btn-learn text-xs mb-2">LEARN MORE</button>
-            </div>
-          </div>
-
-          {/* Product 4 */}
-          <div className={`shadow-2xl border-b-3 border-[#39ff14] mx-auto bg-[#222] ${showMore ? '' : 'hidden lg:block'}`}>
-            <div className="relative inline-block bg-black">
-              <Image src={Keyboard} alt="" width={300} height={300} />
-              <Image src={Chroma} alt="Chroma logo" width={50} height={50} className="absolute bottom-2 right-2" />
-            </div>
-            <div className="ml-3 pb-2">
-              <p className="motserrat-bold my-1 tracking-wide">RAZER BLACKWIDOW ELITE</p>
-              <p className="montserrat-hairline text-xs mb-3 w-[75%]">The Complete Mechanical Gaming Keyboard</p>
-              <button className="montserrat-regular btn-class text-green btn-learn text-xs mb-2">LEARN MORE</button>
-            </div>
-          </div>
-        </div>
-
-        {/* Toggle Button */}
-        <div className="text-center mt-6">
-          <button
-            onClick={() => setShowMore(!showMore)}
-            className="uppercase bg-[#39ff14] hover:bg-[#23da03] text-black rounded-full px-10 py-3 text-sm lg:hidden"
-          >
-            {showMore ? "View Less Products" : "View More Products"}
-          </button>
-        </div>
+      <section>
+          <ProductsSection 
+            Headset={Headset} 
+            Mouse={Mouse} 
+            Keyboard={Keyboard} 
+            Chroma={Chroma} />
       </section>
-
 
       {/* CONTACT */}
       <section id="contact-section" className="relative bg-black py-13">
         <div className="relative z-10 max-w-5xl mx-auto px-9 flex flex-col lg:flex-row gap-10">
 
-          {/* Left Form */}
           <div className="w-full lg:w-2/3 lg:pr-20 px-5">
             <p className="text-green montserrat-bold text-[25px] mb-10 text-center lg:text-left">
               ASK A QUESTION
             </p>
             <form className="space-y-6 w-full lg:w-[90%] mx-auto lg:mx-0">
               <div className="flex flex-col md:flex-row gap-4">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="flex-1 border border-white text-white text-xs px-4 py-3 rounded-md focus:outline-none focus:border-green-500"
-                />
-                <input
-                  type="text"
-                  placeholder="Phone Number"
-                  className="flex-1 border border-white text-white text-xs px-4 py-3 rounded-md focus:outline-none focus:border-green-500"
-                />
+                <input type="text" placeholder="Name" className="flex-1 input-style" />
+                <input type="text" placeholder="Phone Number" className="flex-1 input-style" />
               </div>
-              <input
-                type="email"
-                placeholder="Email Address"
-                className="w-full border border-white text-white text-xs px-4 py-3 rounded-md focus:outline-none focus:border-green-500"
-              />
-              <input
-                type="text"
-                placeholder="Permanent Address"
-                className="w-full border border-white text-white text-xs px-4 py-3 rounded-md focus:outline-none focus:border-green-500"
-              />
-              <textarea
-                placeholder="Message"
-                rows={4}
-                className="w-full border border-white text-white text-xs px-4 py-3 rounded-md resize-none focus:outline-none focus:border-green-500"
-              ></textarea>
-              <button
+              <input type="email" placeholder="Email Address" className="w-full input-style"/>
+              <input type="text" placeholder="Permanent Address" className="w-full input-style"/>
+              <textarea placeholder="Message" rows={4} className="w-full input-style resize-none"></textarea>
+              <Button
                 type="submit"
-                className="montserrat-bold text-xs bg-[#39ff14] hover:bg-[#23da03] text-black px-15 py-3 rounded-full w-full md:w-auto"
+                variant="submit"
+                className="montserrat-bold text-xs text-black items-center justify-center"
               >
                 SEND
-              </button>
+              </Button>
             </form>
           </div>
 
-          {/* Right Information */}
           <div className="w-full lg:w-1/3 text-left ">
             <p className="text-green text-[25px] montserrat-bold mb-10 mt-8 md:mt-0 text-center lg:text-left">INFORMATION</p>
 
-            <div className="mb-6 lg:mb-8 lg:pl-0 pl-5 text-sm lg:text-[13px]">
-              <p className="montserrat-bold tracking-wide mb-1 lg:mb-2">ADDRESS</p>
-              <p className="montserrat-light text-[#c2bfbf] tracking-wider">123 East 123th St.</p>
-              <p className="montserrat-light text-[#c2bfbf] tracking-wider">Floor 123</p>
-              <p className="montserrat-light text-[#c2bfbf] tracking-wider">New York, NY, 10003</p>
+            <div className="mb-6 lg:mb-8 lg:pl-0 pl-5 text-sm lg:text-[13px] tracking-wider">
+              <p className="montserrat-bold mb-1 lg:mb-2">ADDRESS</p>
+              <p className="montserrat-light text-[#c2bfbf]">123 East 123th St.</p>
+              <p className="montserrat-light text-[#c2bfbf]">Floor 123</p>
+              <p className="montserrat-light text-[#c2bfbf]">New York, NY, 10003</p>
             </div>
 
-            <div className="mb-6 lg:mb-8 lg:pl-0 pl-5 text-sm lg:text-[13px]">
-              <p className="montserrat-bold tracking-wide mb-1 lg:mb-2">PHONE</p>
-              <p className="montserrat-light text-[#c2bfbf] tracking-wider">+1 234 567-8910</p>
+            <div className="mb-6 lg:mb-8 lg:pl-0 pl-5 text-sm lg:text-[13px] tracking-wider">
+              <p className="montserrat-bold mb-1 lg:mb-2">PHONE</p>
+              <p className="montserrat-light text-[#c2bfbf]">+1 234 567-8910</p>
             </div>
 
-            <div className="mb-6 lg:mb-8 lg:pl-0 pl-5 text-sm lg:text-[13px]">
-              <p className="montserrat-bold tracking-wide mb-1 lg:mb-2">EMAIL</p>
-              <p className="montserrat-light text-[#c2bfbf] tracking-wider">hello@fullstack.com</p>
+            <div className="mb-6 lg:mb-8 lg:pl-0 pl-5 text-sm lg:text-[13px] tracking-wider">
+              <p className="montserrat-bold mb-1 lg:mb-2">EMAIL</p>
+              <p className="montserrat-light text-[#c2bfbf]">hello@fullstack.com</p>
             </div>
           </div>
-        </div>
-      </section>
-
-
-      <section className="bg-[#111]">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between pl-15 md:pl-0 pr-3 pt-2 pb-3 overflow-x-auto max-w-[1100px] mx-auto">
-          {/* Logo */}
-          <div className="flex-shrink-0 pl-0 md:pl-10">
-            <Image src={Logo} alt="Logo" width={180} height={100} className="w-[180px] h-[100px]" />
-          </div>
-
-          {/* Navigation */}
-          <div className="whitespace-nowrap flex flex-col md:flex-row justify-start items-start md:items-center 
-            gap-2 md:gap-4 space-x-4 text-xs montserrat-bold tracking-widest text-[gray] mb-4 md:mb-0 space-y-3 md:space-y-0">
-            <a href="#">PRODUCTS</a>
-            <a href="#">ABOUT</a>
-            <a href="#">COMMUNITY</a>
-            <a href="#">CONTACT US</a>
-          </div>
-
-          {/* Social Icons */}
-          <div className="flex-shrink-0 flex gap-x-5 mt-4 md:mt-0 mb-5 md:mb-0">
-            <Image src={Twitter} alt="Twitter" width={15} height={20} />
-            <Image src={Facebook} alt="Facebook" width={14} height={18} />
-            <Image src={Google} alt="Google" width={20} height={20} />
-          </div>
-        </div>
-
-        {/* Responsive HR */}
-        <div className="bg-[#111] w-full flex justify-center">
-          <hr className="border-[#555] w-full lg:max-w-[1150px] m-0" />
         </div>
       </section>
 

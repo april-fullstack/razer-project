@@ -18,5 +18,34 @@ import Five from "../images/JPG/05-wireless-gaming-headset-xs.jpg";
 import Six from "../images/JPG/06-wireless-gaming-headset-xs.jpg";
 import Seven from "../images/JPG/07-wireless-gaming-headset-xs.jpg";
 import Eight from "../images/JPG/08-wireless-gaming-headset-xs.jpg";
+import FullFive from "../images/JPG/five.jpg";
+import FullSix from "../images/JPG/six.jpg";
+import FullSeven from "../images/JPG/seven.jpg";
+import FullEight from "../images/JPG/eight.jpg";
 
-export { Logo, Thx, Chroma, Headset, Mouse, Keyboard, Nari, Cooling, Adjusting, Swiveling, Balance, Wireless, Twitter, Facebook, Google, Wired, Five, Six, Seven, Eight }
+export { 
+  Logo, 
+  Thx, 
+  Chroma, 
+  Headset, 
+  Mouse, 
+  Keyboard, 
+  Nari, 
+  Cooling, 
+  Adjusting, 
+  Swiveling, 
+  Balance, 
+  Wireless, 
+  Twitter, 
+  Facebook, 
+  Google, 
+  Wired, 
+  Five, 
+  Six, 
+  Seven, 
+  Eight, 
+  FullFive, 
+  FullSix, 
+  FullSeven, 
+  FullEight 
+}
